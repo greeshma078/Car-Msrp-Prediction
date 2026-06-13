@@ -7,8 +7,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from src.preprocessing import build_preprocessor
-#import mlflow
-#import mlflow.sklearn
 
 def train_model():
     # Step 1: Load dataset
@@ -59,15 +57,6 @@ def train_model():
     print("R²:", r2_score(y_test, y_pred))
     print("MAE:", mean_absolute_error(y_test, y_pred))
     print("RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
-
-    # Step 8: Log with MLflow
-    with mlflow.start_run():
-        mlflow.log_param("n_estimators", 200)
-        mlflow.log_param("max_depth", None)
-        mlflow.log_metric("r2", r2_score(y_test, y_pred))
-        mlflow.log_metric("mae", mean_absolute_error(y_test, y_pred))
-        mlflow.log_metric("rmse", np.sqrt(mean_squared_error(y_test, y_pred)))
-        mlflow.sklearn.log_model(pipeline, name="model")
 
     # Step 9: Save pipeline
     os.makedirs("models", exist_ok=True)
