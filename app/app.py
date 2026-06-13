@@ -1,12 +1,23 @@
 import streamlit as st
 import sys, os
 
-# Fix import path so Python can find src/
+# Fix import path first so Python can find src/
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+# Import training function
+from src.train import train_model  
+
+# Retrain if model file is missing
+if not os.path.exists("models/final_pipeline.pkl"):
+    st.warning("Model file not found. Training model... please wait.")
+    train_model()
+    st.success("Model trained and saved!")
+
+# Import prediction function AFTER ensuring model exists
 from src.predict import predict_price
 
-st.title(" Car MSRP Prediction App")
+# Streamlit UI
+st.title("Car MSRP Prediction App")
 st.write("Enter car details below to predict the Manufacturer's Suggested Retail Price (MSRP).")
 
 # User inputs
