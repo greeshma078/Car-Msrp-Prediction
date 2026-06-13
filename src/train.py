@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from src.preprocessing import build_preprocessor
-import mlflow
-import mlflow.sklearn
+#import mlflow
+#import mlflow.sklearn
 
 def train_model():
     # Step 1: Load dataset
