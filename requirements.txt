@@ -2,6 +2,7 @@ streamlit
 scikit-learn
 pandas
 joblib
-mlflow
+mlflow==1.30.0
 protobuf==3.20.3
+
 
